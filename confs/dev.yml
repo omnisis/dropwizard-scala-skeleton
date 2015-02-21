@@ -1,0 +1,29 @@
+server:
+  applicationConnectors:
+    #- type: http
+    #  port: 8281
+    - type: https
+      port: 8284
+      keyStorePath: keystore.jks
+      keyStorePassword: secret
+      certAlias: jetty
+      validateCerts: false
+      validatePeers: false
+      needClientAuth: false
+      wantClientAuth: false
+      
+      
+  adminConnectors:
+    - type: http
+      port: 8282
+
+logging:
+  level:  INFO  # default level off all loggers
+
+  loggers:
+    com.example:             DEBUG
+    org.eclipse.jetty:       INFO
+      
+  appenders:
+    - type: console
+      timeZone: UTC
