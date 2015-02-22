@@ -1,7 +1,9 @@
 server:
   applicationConnectors:
-    #- type: http
-    #  port: 8281
+    # Comment below if you want HTTPS only (maybe for security?)
+    - type: http
+      port: 8281
+
     - type: https
       port: 8284
       keyStorePath: keystore.jks
@@ -22,8 +24,20 @@ logging:
 
   loggers:
     com.example:             DEBUG
-    org.eclipse.jetty:       INFO
-      
+
   appenders:
     - type: console
       timeZone: UTC
+
+
+# custom top-level config (this one also has a non-empty validator)
+appName: My DiceRoll App
+
+diceEngine:
+    numDice: 4
+    weights: [0.166667,0.166667,0.166667,0.166667,0.166667,0.166667]
+
+# custom top-level section
+swagger:
+    host: localhost
+    port: 8284
