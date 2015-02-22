@@ -3,6 +3,7 @@ package com.example.highroller
 import com.example.highroller.health.DummyHealthCheck
 import com.example.highroller.resources.DiceResource
 import com.example.highroller.services.DiceRollingEngine
+import com.example.highroller.util.CORSBundle
 import com.massrelevance.dropwizard.ScalaApplication
 import com.massrelevance.dropwizard.bundles.ScalaBundle
 import io.dropwizard.setup.{Bootstrap, Environment}
@@ -16,6 +17,7 @@ object HighRollerApp extends ScalaApplication[HighRollerConfiguration] {
 
   override def initialize(bootstrap: Bootstrap[HighRollerConfiguration]): Unit = {
 
+    bootstrap.addBundle(new CORSBundle)
     bootstrap.addBundle(new ScalaBundle)
     bootstrap.addBundle(new SwaggerBundle[HighRollerConfiguration]() {
       override def getSwaggerBundleConfiguration(configuration: HighRollerConfiguration): SwaggerBundleConfiguration = {
